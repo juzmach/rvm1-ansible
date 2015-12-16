@@ -34,13 +34,13 @@
 
 - name: Download the GPG signature since gpg key import failed
   get_url:
-    url: 'https://rvm.io/mpapis.asc'
-    dest: /tmp/mpapis.asc
+    url: '{{ rvm1_gpg_signature_url }}'
+    dest: '{{ rvm1_gpg_signature_dest }}'
   register: rvm1_gpg_signature_download_result
   when: rvm1_gpg_import_result|failed
 
 - name: Import GPG signature
-  command: 'gpg --import /tmp/mpapis.asc'
+  command: 'gpg --import {{ rvm1_gpg_signature_dest }}'
   when: rvm1_gpg_signature_download_result|changed
 
 - name: Install rvm

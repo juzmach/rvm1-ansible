@@ -40,5 +40,11 @@ rvm1_gpg_keys: 'D39DC0E3'
 # The GPG key server
 rvm1_gpg_key_server: 'hkp://keys.gnupg.net'
 
+# The GPG signature url
+rvm1_gpg_signature_url: 'https://rvm.io/mpapis.asc'
+
+# The GPG signature dest:
+rvm1_gpg_signature_dest: '/tmp/mpapis.asc'
+
 # autolib mode, see https://rvm.io/rvm/autolibs
 rvm1_autolib_mode: 3
