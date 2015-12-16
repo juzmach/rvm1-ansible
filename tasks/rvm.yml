@@ -26,11 +26,6 @@
     mode: 0755
   when: not rvm_binary.stat.exists
 
-- name: Detect GPG signature
-  stat: path='{{ rvm1_gpg_signature_dest }}'
-  register: rvm1_gpg_signature
-  when: rvm1_gpg_import_result|failed
-
 - name: Import GPG keys
   command: 'gpg --keyserver {{ rvm1_gpg_key_server }} --recv-keys {{ rvm1_gpg_keys }}'
   changed_when: False
@@ -38,6 +33,11 @@
   sudo_user: '{{ rvm1_user }}'
   register: rvm1_gpg_import_result
   ignore_errors: yes
+
+- name: Detect GPG signature
+  stat: path='{{ rvm1_gpg_signature_dest }}'
+  register: rvm1_gpg_signature
+  when: rvm1_gpg_import_result|failed
 
 - name: Download the GPG signature since gpg key import failed
   get_url:
