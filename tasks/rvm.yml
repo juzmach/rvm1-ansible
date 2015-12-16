@@ -31,6 +31,7 @@
   changed_when: False
   when: rvm1_gpg_keys != ''
   sudo_user: '{{ rvm1_user }}'
+  ignore_errors: yes
 
 - name: Download the GPG signature since gpg key import failed
   get_url:
